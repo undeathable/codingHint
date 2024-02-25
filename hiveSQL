@@ -1,1 +1,17 @@
+# 在hive中把字符串转换为timetsamp
+FROM_UNIXTIME(UNIX_TIMESTAMP('date column','yyyy-MM-dd HH.mm.ss')) as ts
+# hive 求两个日期值相差周数
+datediff(end_date, start_date)
+1、计算两个日期的天数差
+select datediff(from_unixtime(unix_timestamp(‘2020-10-31 00:00:00’),‘YYYY-MM-dd’),concat(substr(“20201001”,1,4),‘-’,substr(“20201001”,5,2),‘-’,substr(“20201001”,7,2)))
+2、计算两个时间相差的秒数
+select unix_timestamp(end_time,‘yyyy-MM-dd HH:mm:ss’)-unix_timestamp(create_time,‘yyyy-MM-dd HH:mm:ss’)
+3、计算两个时间的分钟差
+select (unix_timestamp(end_time,‘yyyy-MM-dd HH:mm:ss’)-unix_timestamp(create_time,‘yyyy-MM-dd HH:mm:ss’))/60
 
+                        
+# online compiler
+https://gethue.com/
+
+reference:
+https://blog.csdn.net/weixin_38003620/article/details/109745721
