@@ -1,5 +1,6 @@
 # 在hive中把字符串转换为timetsamp
 FROM_UNIXTIME(UNIX_TIMESTAMP('date column','yyyy-MM-dd HH.mm.ss')) as ts
+
 # hive 求两个日期值相差周数（返回结束日期减去开始日期的天数）
 1、计算两个日期的天数差 - datediff(string enddate,string startdate)
 select datediff('2022-12-31','2022-12-20');
@@ -13,11 +14,29 @@ select date_add('2022-12-20',11);
 5、日期减少函数 - date_sub (string startdate,int days)
 select date_sub('2022-12-31',11);
 
+# With关键字用法
+with temp2 as (
+  select * from xxx
+),temp2 as (
+  select * from xxx
+)
+select * from temp1,temp2
 
-                        
+# hive数据类型及数据类型转换的注意事项
+select cast(1234.5678 AS DECIMAL)
+
+# 去重
+COUNT(DISTINCT totalprice)OVER(partition by name,substring(orderdate,1,7) ) totalorder
+SIZE(COLLECT_SET(totalprice)OVER(partition by name,substring(orderdate,1,7))) totalorder
+COUNT(distinct id) OVER(PARTITION BY id order by days rows unbounded preceding) as lifetime_weeks
+
 # online compiler
 https://gethue.com/
 
 reference:
 https://blog.csdn.net/weixin_38003620/article/details/109745721
 https://blog.csdn.net/X8i0Bev/article/details/128391689
+https://blog.csdn.net/u010438126/article/details/126265164
+https://blog.csdn.net/sodaloveer/article/details/130555485
+https://blog.csdn.net/woshinsy/article/details/125428425
+https://www.5axxw.com/questions/content/uumarq
