@@ -1,0 +1,6 @@
+#Sublime 全选后光标在每一行、全局替换、全局换行
+全选后，使用快捷键Ctrl + Shift + L，即可在每一行的后面显示光标，再使用End或Home键进行前后移动，输入逗号再按回车键即可
+
+
+# reference
+https://blog.csdn.net/qq_25112523/article/details/131476221
