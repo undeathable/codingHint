@@ -1,1 +1,61 @@
+# python读文件的每一行 python如何一行行读取文件
+f=open(file='test.txt',mode='r',encoding='utf-8')
+res=f.read()
+f.close()
 
+# python解析json文件三种
+import json
+with open('data.json','r') as file:
+  data=json.load(file)
+print(data)
+
+# pandas的DataFrame如何追加新行
+data={'A':[1,2,3], 'B':[4,5,6]}
+df=pd.DataFrame(data)
+new_row1={'A':7,'B':8}
+new_row2={'A':9,'B':10}
+df=df.append([new_row1,new_row2], ignore_index=True)
+
+# python按行读文件
+with open(file_path, 'r') as file:
+  line = file.readline()
+  while line:
+    print(line)
+    line=file.readline()
+
+# dataframe删除空值行
+df.dropna(inplace=True)  # inplace参数设为True，可以直接修改原数据
+# pandas删除空值的列
+df.dropna(axis=1, inplace=True)
+# pandas删除空白行
+df.replace(' ', np.nan, inplace=True)  # 将空白字符替换为NaN
+df.dropna(how='all', inplace=True)  # 删除所有空白行
+# pandas去除空值行
+df.dropna(thresh=2, inplace=True) # 至少含有两个非空值才保留
+# pandas删除空值的行
+df = df[~df.isnull().any(axis=1)]  # 删除含有空值的行
+# pandas删除空列
+df.dropna(axis=1, how='all', inplace=True)  # 删除所有空列
+# 删除空值所在行pandas
+df.dropna(subset=['A', 'B'], how='any', inplace=True)  # 删除A和B列中含有空值的行
+# pandas删除指定行
+df.drop([1, 3], axis=0, inplace=True)  # 删除第1和第3行
+# pandas删除含有空值的行
+df = df[df.notnull().all(axis=1)]  # 删除含有空值的行
+
+# read_csv
+pandas.read_csv(filepath_or_buffer, sep=',', delimiter=None, header='infer', names=None, index_col=None, usecols=None, squeeze=False, prefix=None, mangle_dupe_cols=True, dtype=None, engine=None, converters=None, true_values=None, false_values=None, skipinitialspace=False, skiprows=None, skipfooter=0, nrows=None, na_values=None, keep_default_na=True, na_filter=True, verbose=False, skip_blank_lines=True, parse_dates=False, infer_datetime_format=False, keep_date_col=False, date_parser=None, dayfirst=False, cache_dates=True, iterator=False, chunksize=None, compression='infer', thousands=None, decimal='.', lineterminator=None, quotechar='"', quoting=0, doublequote=True, escapechar=None, comment=None, encoding=None, dialect=None, error_bad_lines=True, warn_bad_lines=True, delim_whitespace=False, low_memory=True, memory_map=False, float_precision=None)[source]¶
+
+# 使用itertools.product()函数
+import itertools
+list1 = ['', 'B', 'C']
+list2 = [1, 2, 3]
+result = list(itertools.product(list1, list2))
+
+reference
+https://blog.51cto.com/u_16099253/7288747
+https://blog.51cto.com/u_16213375/7157931
+https://blog.csdn.net/qq_44722189/article/details/133312052
+https://www.python100.com/html/86945.html
+https://blog.csdn.net/qq_41185868/article/details/109059955
+https://pythonjishu.com/gbsbvkpjvispifb/
